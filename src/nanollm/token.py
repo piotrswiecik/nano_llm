@@ -4,10 +4,12 @@ import tiktoken
 
 class RegexTokenizer:
     """A simple regex-based tokenizer."""
+
     def __init__(self, vocab: dict[str, int]):
         """
         Args:
-            vocab: A dictionary that maps words to their corresponding integer indices."""
+            vocab: A dictionary that maps words to their corresponding integer indices.
+        """
         self.vocab = vocab
         self.reverse_vocab: dict[int, str] = {v: k for k, v in vocab.items()}
 
@@ -23,22 +25,23 @@ class RegexTokenizer:
         res = re.split(r'([,.?_!"()\']|--|\s)', text)
         res = [w.strip() for w in res if w.strip()]
         tokens = [self.vocab[w] for w in res]
-        return tokens 
+        return tokens
 
     def detokenize(self, tokens: list[int]) -> str:
         """
         Converts a list of integer indices back into a text.
-        
+
         Args:
             tokens: A list of integer indices.
         """
         text = " ".join([self.reverse_vocab[t] for t in tokens])
-        text = re.sub(r' ([,.?_!"()\']|--|\s) ', r'\1', text)
+        text = re.sub(r' ([,.?_!"()\']|--|\s) ', r"\1", text)
         return text
 
 
 class BPETokenizer:
     """Byte-Pair Encoding tokenizer using GPT-2 algorithm."""
+
     def __init__(self):
         self._engine = tiktoken.get_encoding("gpt2")
 
@@ -52,11 +55,11 @@ class BPETokenizer:
         Returns:
             A list of integer indices corresponding to the words in the text."""
         return self._engine.encode(text, allowed_special={"<|endoftext|>"})
-    
+
     def detokenize(self, tokens: list[int]) -> str:
         """
         Converts a list of integer indices back into a text.
-        
+
         Args:
             tokens: A list of integer indices.
         """
