@@ -51,7 +51,7 @@ class BPETokenizer:
 
         Returns:
             A list of integer indices corresponding to the words in the text."""
-        return self._engine.encode(text)
+        return self._engine.encode(text, allowed_special={"<|endoftext|>"})
     
     def detokenize(self, tokens: list[int]) -> str:
         """
