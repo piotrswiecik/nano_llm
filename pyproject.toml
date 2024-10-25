@@ -1,0 +1,35 @@
+[project]
+name = "nanollm"
+version = "0.1.0"
+requires-python = ">=3.12"
+authors = [
+  {name = "Piotr Święcik", email = "piotr.swiecik@gmail.com"},
+]
+description = "Simple LLM trained from stratch"
+readme = "README.rst"
+license = {file = "LICENSE.txt"}
+keywords = ["ai", "nlp", "language-model", "transformers", "pytorch", "llm"]
+classifiers = [
+  "Programming Language :: Python"
+]
+
+[project.urls]
+Repository = "https://github.com/piotrswiecik/nano_llm"
+
+[tool.poetry]
+name = "nanollm"
+version = "0.1.0"
+description = "Simple LLM trained from stratch"
+authors = ["Piotr Święcik <piotr.swiecik@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
