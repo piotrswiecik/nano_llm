@@ -1,8 +1,10 @@
-import torch
 import logging
+
+import torch
 
 from nanollm.data import GPTDataset
 from nanollm.token import BPETokenizer
+
 
 def test_gpt_dataset():
     tokenizer = BPETokenizer()
@@ -17,4 +19,4 @@ def test_gpt_dataset():
     items = list(dataset)  # should not raise any errors
     for item in items:
         assert item[0].shape == item[1].shape
-        assert item[0][-1] == item[1][-2] # sliding window works correctly
+        assert item[0][-1] == item[1][-2]  # sliding window works correctly

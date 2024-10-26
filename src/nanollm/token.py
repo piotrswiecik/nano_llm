@@ -1,7 +1,7 @@
 import re
-import tiktoken
-
 from abc import ABC, abstractmethod
+
+import tiktoken
 
 
 class Tokenizer(ABC):

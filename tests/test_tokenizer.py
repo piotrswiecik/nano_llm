@@ -1,5 +1,6 @@
 import pytest
-from nanollm.token import RegexTokenizer, BPETokenizer
+
+from nanollm.token import BPETokenizer, RegexTokenizer
 
 
 def test_regex_tokenizer_should_tokenize_text():
