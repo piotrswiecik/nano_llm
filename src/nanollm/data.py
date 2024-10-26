@@ -1,7 +1,7 @@
 import torch
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import DataLoader, Dataset
 
-from nanollm.token import Tokenizer
+from nanollm.token import BPETokenizer, Tokenizer
 
 
 class GPTDataset(Dataset):
@@ -37,3 +37,24 @@ class GPTDataset(Dataset):
 
     def __getitem__(self, index):
         return self._inputs[index], self._targets[index]
+
+
+def create_dataloader(
+    text: str,
+    batch_size: int = 32,
+    max_length: int = 256,
+    stride: int = 128,
+    shuffle: bool = True,
+    drop_last: bool = True,
+    num_workers: int = 0,
+) -> DataLoader:
+    """Creates a DataLoader for the GPTDataset."""
+    tokenizer = BPETokenizer()
+    dataset = GPTDataset(text, tokenizer, max_length, stride)
+    return DataLoader(
+        dataset,
+        batch_size=batch_size,
+        shuffle=shuffle,
+        drop_last=drop_last,
+        num_workers=num_workers,
+    )
