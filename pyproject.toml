@@ -26,6 +26,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 tiktoken = "^0.8.0"
+torch = "^2.5.0"
+torchvision = "^0.20.0"
+torchaudio = "^2.5.0"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.29.5"

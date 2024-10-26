@@ -1,8 +1,20 @@
 import re
 import tiktoken
 
+from abc import ABC, abstractmethod
 
-class RegexTokenizer:
+
+class Tokenizer(ABC):
+    @abstractmethod
+    def tokenize():
+        pass
+
+    @abstractmethod
+    def detokenize():
+        pass
+
+
+class RegexTokenizer(Tokenizer):
     """A simple regex-based tokenizer."""
 
     def __init__(self, vocab: dict[str, int]):
@@ -39,7 +51,7 @@ class RegexTokenizer:
         return text
 
 
-class BPETokenizer:
+class BPETokenizer(Tokenizer):
     """Byte-Pair Encoding tokenizer using GPT-2 algorithm."""
 
     def __init__(self):
